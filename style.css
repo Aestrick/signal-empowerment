@@ -1,4 +1,4 @@
-/* Reset Margin & Setup Font */
+/* --- RESET & FONDASI DASAR --- */
 * {
     margin: 0;
     padding: 0;
@@ -6,20 +6,19 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Dark Mode Background */
 body {
-    background-color: #0f172a; /* Warna biru gelap ala hacker */
-    color: #e2e8f0; /* Teks warna putih keabuan biar ga silau */
+    background-color: #0f172a; /* Biru gelap background utama */
+    color: #e2e8f0;
     display: flex;
     justify-content: center;
 }
 
-/* Pembatas Layar HP (Mobile-First Approach) */
+/* Penjaga Layout Tetap Seukuran Layar HP (Mobile-First) */
 .app-container {
     width: 100%;
-    max-width: 480px; /* Maksimal selebar HP */
+    max-width: 480px;
     min-height: 100vh;
-    background-color: #1e293b;
+    background-color: #1e293b; /* Warna body aplikasi */
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
     padding: 20px;
 }
@@ -27,7 +26,7 @@ body {
 header {
     text-align: center;
     margin-bottom: 30px;
-    border-bottom: 2px solid #38bdf8; /* Aksen Cyan */
+    border-bottom: 2px solid #38bdf8; /* Aksen Line Cyan */
     padding-bottom: 10px;
 }
 
@@ -36,12 +35,30 @@ h1 {
     font-size: 1.5rem;
 }
 
-/* Style Kartu Menu */
+header p {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 5px;
+}
+
+/* --- KARTU KONTEN & TOMBOL UTAMA --- */
 .menu-card {
     background-color: #334155;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.menu-card p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin-bottom: 10px;
 }
 
 .btn-primary, .btn-danger {
@@ -53,6 +70,11 @@ h1 {
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
+    transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.btn-primary:active, .btn-danger:active {
+    transform: scale(0.98);
 }
 
 .btn-primary {
@@ -60,7 +82,166 @@ h1 {
     color: #0f172a;
 }
 
+.btn-primary:hover {
+    filter: brightness(1.1);
+}
+
 .btn-danger {
     background-color: #ef4444;
     color: white;
+}
+
+.btn-danger:hover {
+    filter: brightness(1.1);
+}
+
+/* --- NAVIGASI UTILITAS --- */
+.hidden {
+    display: none !important;
+}
+
+.btn-back {
+    background: none;
+    color: #94a3b8;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: left;
+    display: block;
+    padding: 5px 0;
+}
+
+.btn-back:hover {
+    color: #e2e8f0;
+}
+
+.alert-text {
+    color: #ef4444;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+/* --- TIPS LAYOUT (HACK 1) --- */
+.tips-box {
+    background-color: #1e293b;
+    border-left: 4px solid #38bdf8;
+    padding: 15px;
+    border-radius: 0 8px 8px 0;
+    text-align: left;
+}
+
+.tips-box h3 {
+    font-size: 1rem;
+    color: #38bdf8;
+    margin-bottom: 5px;
+}
+
+.tips-box p {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+/* --- TOGGLE BUTTONS (HACK 2) --- */
+.toggle-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-tab {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #38bdf8;
+    background: none;
+    color: #38bdf8;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-tab.active {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+/* --- REPLIKA UI LOCALHOST ROUTER --- */
+.router-mockup {
+    background-color: #f8fafc;
+    color: #0f172a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.browser-bar {
+    background-color: #cbd5e1;
+    padding: 8px 12px;
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-bottom: 2px solid #94a3b8;
+}
+
+.router-body {
+    padding: 15px;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #475569;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #94a3b8;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #334155;
+    background-color: #ffffff;
+}
+
+/* --- ANIMASI PRINSIP SIGNALING (PULSE) --- */
+.highlight-signal {
+    border: 2px dashed #0ea5e9;
+    background-color: rgba(14, 165, 233, 0.08);
+    padding: 8px;
+    border-radius: 6px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+}
+
+.btn-apply {
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-apply:hover {
+    background-color: #0284c7;
 }

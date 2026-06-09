@@ -2,33 +2,93 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta tag krusial agar tampilan pas di layar HP (Mobile-First) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGNAL: EMPOWERMENT</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <div class="app-container">
-        <!-- Header -->
         <header>
             <h1>📶 SIGNAL: EMPOWERMENT</h1>
             <p>Portal Diagnosa Mandiri Wi-Fi Rumah</p>
         </header>
 
-        <!-- Tempat Branching Menu Nanti -->
-        <main id="main-content">
-            <div class="menu-card">
-                <h2>Apa Kendala Wi-Fi Anda Hari Ini?</h2>
-                <p>Pilih gejala di bawah ini untuk memulai perbaikan:</p>
-                <!-- Tombol ini nanti kita fungsikan pakai JavaScript -->
-                <button class="btn-primary">Sinyal Ada, Tapi Lemot 🐌</button>
-                <button class="btn-danger">Internet Mati / LOS Merah 🚨</button>
-            </div>
+        <main id="main-menu" class="menu-card">
+            <h2>Apa Kendala Wi-Fi Anda Hari Ini?</h2>
+            <p>Pilih gejala di bawah ini untuk memulai perbaikan:</p>
+            <button id="btn-lemot" class="btn-primary">Sinyal Ada, Tapi Lemot 🐌</button>
+            <button id="btn-los" class="btn-danger">Internet Mati / LOS Merah 🚨</button>
         </main>
+
+        <section id="scenario-lemot" class="menu-card hidden">
+            <button id="back-to-menu1" class="btn-back">⬅ Kembali</button>
+            <h2>Diagnosa: Internet Lemot</h2>
+            <p>Pilih metode optimasi yang ingin dilakukan:</p>
+            
+            <lottie-player src="assets/wifi-loading.json" background="transparent" speed="1" style="width: 150px; height: 150px; margin: 0 auto;" loop autoplay></lottie-player>
+            
+            <button id="btn-hack1" class="btn-primary">Hack 1: Cek Posisi Router</button>
+            <button id="btn-hack2" class="btn-primary">Hack 2: Ubah DNS (ZTE/Huawei)</button>
+        </section>
+
+        <section id="scenario-los" class="menu-card hidden">
+            <button id="back-to-menu2" class="btn-back">⬅ Kembali</button>
+            <h2 style="color: #ef4444;">Peringatan: Mati Total!</h2>
+            
+            <lottie-player src="assets/error-animation.json" background="transparent" speed="1" style="width: 150px; height: 150px; margin: 0 auto;" loop autoplay></lottie-player>
+            
+            <p class="alert-text">Apakah lampu "LOS" pada modem Anda berkedip MERAH?</p>
+            <p style="font-size: 0.9rem; margin-bottom: 15px;">Jika ya, kabel fiber optik Anda putus. Jangan diotak-atik!</p>
+            <button class="btn-danger" onclick="window.open('tel:188')">Hubungi Teknisi (188) Sekarang</button>
+        </section>
+
+        <section id="halaman-posisi" class="menu-card hidden">
+            <button id="back-to-lemot1" class="btn-back">⬅ Kembali ke Diagnosa</button>
+            <h2>Hack 1: Posisi Router</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 20px; color: #94a3b8;">Sinyal Wi-Fi memancar seperti gelombang air dan mudah terhalang objek padat.</p>
+            
+            <div class="tips-box">
+                <h3>🧱 Hindari Tembok Tebal</h3>
+                <p>Jangan taruh router di dalam lemari atau terhalang sekat semen tebal. Ini bisa memotong kekuatan sinyal hingga 50%!</p>
+            </div>
+            <div class="tips-box" style="margin-top: 12px;">
+                <h3>🗼 Tinggikan Posisi Perangkat</h3>
+                <p>Sinyal Wi-Fi cenderung memancar ke arah bawah. Taruh router minimal setinggi dada manusia agar cakupan areanya luas.</p>
+            </div>
+        </section>
+
+        <section id="halaman-dns" class="menu-card hidden">
+            <button id="back-to-lemot2" class="btn-back">⬅ Kembali ke Diagnosa</button>
+            <h2>Optimasi DNS Server</h2>
+            <p style="font-size: 0.85rem; margin-bottom: 15px;">Pilih tipe modem IndiHome yang ada di rumah Anda:</p>
+
+            <div class="toggle-container">
+                <button id="tab-huawei" class="btn-tab active">Huawei</button>
+                <button id="tab-zte" class="btn-tab">ZTE</button>
+            </div>
+
+            <div class="router-mockup">
+                <div id="browser-bar" class="browser-bar">🌐 192.168.100.1</div>
+                <div class="router-body">
+                    <h3 style="margin-bottom: 15px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px; color: #334155;">WAN Configuration</h3>
+                    
+                    <div class="form-group highlight-signal">
+                        <label>Primary DNS:</label>
+                        <input type="text" value="8.8.8.8" readonly>
+                    </div>
+                    <div class="form-group highlight-signal">
+                        <label>Secondary DNS:</label>
+                        <input type="text" value="1.1.1.1" readonly>
+                    </div>
+
+                    <button class="btn-apply" onclick="alert('DNS Berhasil Dioptimasi ke Server Google & Cloudflare!')">Apply Changes</button>
+                </div>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 15px; color: #94a3b8;">*Kotak berkedip adalah Prinsip Signaling untuk memandu perhatian Anda ke kolom yang benar.</p>
+        </section>
     </div>
 
-    <!-- Script Lottie Player (Wajib buat nampilin animasi) -->
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
