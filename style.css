@@ -1,247 +1,164 @@
-/* --- RESET & FONDASI DASAR --- */
+/* --- RESET & BODY --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: '-apple-system', BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background-color: #0f172a; /* Biru gelap background utama */
-    color: #e2e8f0;
+    background-color: #0b0f19;
+    color: #f1f5f9;
     display: flex;
     justify-content: center;
 }
 
-/* Penjaga Layout Tetap Seukuran Layar HP (Mobile-First) */
 .app-container {
     width: 100%;
-    max-width: 480px;
+    max-width: 450px;
     min-height: 100vh;
-    background-color: #1e293b; /* Warna body aplikasi */
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    padding: 20px;
+    background-color: #111827;
+    padding: 24px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #38bdf8; /* Aksen Line Cyan */
-    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
-
-h1 {
+header h1 {
     color: #38bdf8;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
 }
-
 header p {
     font-size: 0.85rem;
     color: #94a3b8;
-    margin-top: 5px;
+    margin-top: 4px;
 }
 
-/* --- KARTU KONTEN & TOMBOL UTAMA --- */
-.menu-card {
-    background-color: #334155;
-    padding: 20px;
-    border-radius: 12px;
+.section-title { font-size: 1.25rem; margin-bottom: 8px; font-weight: 700; text-align: left;}
+.section-subtitle { font-size: 0.9rem; color: #cbd5e1; margin-bottom: 16px; text-align: left; }
+
+/* --- FITUR BARU: SPEEDTEST SIMULATOR --- */
+.speedtest-box {
+    background-color: #1f2937;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px dashed #374151;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-.menu-card h2 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-}
-
-.menu-card p {
-    font-size: 0.95rem;
-    color: #cbd5e1;
-    margin-bottom: 10px;
-}
-
-.btn-primary, .btn-danger {
-    width: 100%;
-    padding: 15px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.1s ease, filter 0.2s ease;
-}
-
-.btn-primary:active, .btn-danger:active {
-    transform: scale(0.98);
-}
-
-.btn-primary {
-    background-color: #38bdf8;
-    color: #0f172a;
-}
-
-.btn-primary:hover {
-    filter: brightness(1.1);
-}
-
-.btn-danger {
-    background-color: #ef4444;
-    color: white;
-}
-
-.btn-danger:hover {
-    filter: brightness(1.1);
-}
-
-/* --- NAVIGASI UTILITAS --- */
-.hidden {
-    display: none !important;
-}
-
-.btn-back {
-    background: none;
-    color: #94a3b8;
-    border: none;
-    font-size: 0.95rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 20px;
-    text-align: left;
-    display: block;
-    padding: 5px 0;
-}
-
-.btn-back:hover {
-    color: #e2e8f0;
-}
-
-.alert-text {
-    color: #ef4444;
-    font-weight: bold;
-    margin-top: 15px;
-    font-size: 1.1rem;
-}
-
-/* --- TIPS LAYOUT (HACK 1) --- */
-.tips-box {
-    background-color: #1e293b;
-    border-left: 4px solid #38bdf8;
-    padding: 15px;
-    border-radius: 0 8px 8px 0;
-    text-align: left;
-}
-
-.tips-box h3 {
-    font-size: 1rem;
-    color: #38bdf8;
-    margin-bottom: 5px;
-}
-
-.tips-box p {
-    font-size: 0.85rem;
-    color: #cbd5e1;
-    line-height: 1.4;
-}
-
-/* --- TOGGLE BUTTONS (HACK 2) --- */
-.toggle-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.btn-tab {
-    flex: 1;
-    padding: 10px;
-    border: 2px solid #38bdf8;
-    background: none;
-    color: #38bdf8;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-tab.active {
-    background-color: #38bdf8;
-    color: #0f172a;
-}
-
-/* --- REPLIKA UI LOCALHOST ROUTER --- */
-.router-mockup {
-    background-color: #f8fafc;
-    color: #0f172a;
-    border-radius: 8px;
+.speedtest-box h3 { font-size: 1rem; color: #38bdf8; margin-bottom: 12px; }
+.meter-container {
+    background-color: #111827;
+    height: 35px;
+    border-radius: 20px;
+    position: relative;
     overflow: hidden;
-    margin-top: 10px;
-    text-align: left;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #334155;
 }
-
-.browser-bar {
-    background-color: #cbd5e1;
-    padding: 8px 12px;
-    font-family: monospace;
-    font-size: 0.9rem;
+.speed-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, #0284c7, #38bdf8);
+    transition: width 0.1s linear;
+}
+#speed-result {
+    position: relative;
     font-weight: bold;
-    border-bottom: 2px solid #94a3b8;
+    z-index: 2;
+    font-size: 1rem;
 }
-
-.router-body {
-    padding: 15px;
-}
-
-.form-group {
-    margin-bottom: 12px;
-}
-
-.form-group label {
-    display: block;
+.btn-test {
+    background-color: #38bdf8;
+    color: #111827;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 12px;
+    cursor: pointer;
     font-size: 0.85rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #475569;
+}
+.test-rec-text { font-size: 0.85rem; margin-top: 12px; font-weight: bold; line-height: 1.4; }
+
+/* --- GRID MENU UTAMA --- */
+.grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+.grid-card { padding: 20px 14px; border-radius: 16px; cursor: pointer; transition: transform 0.2s; text-align: left; }
+.grid-card:active { transform: scale(0.95); }
+.card-icon { font-size: 2rem; display: block; margin-bottom: 12px; }
+.grid-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.grid-card p { font-size: 0.75rem; line-height: 1.3; }
+.card-cyan { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid #38bdf8; }
+.card-cyan h3 { color: #38bdf8; }
+.card-cyan p { color: #94a3b8; }
+.card-red { background: linear-gradient(135deg, #1e293b, #0f172a); border: 1px solid #ef4444; }
+.card-red h3 { color: #ef4444; }
+.card-red p { color: #94a3b8; }
+
+/* --- LIST CARD ACTION --- */
+.btn-action-card {
+    width: 100%; background-color: #1f2937; border: 1px solid #374151; padding: 16px;
+    border-radius: 12px; margin-bottom: 12px; color: white; text-align: left;
+    display: flex; flex-direction: column; gap: 4px; cursor: pointer;
+}
+.btn-action-card span { font-size: 0.75rem; color: #38bdf8; font-weight: bold; text-transform: uppercase; }
+.btn-action-card b { font-size: 1rem; }
+
+/* --- FITUR BARU: INTERACTIVE CHECKBOX (HACK 1) --- */
+.score-box {
+    background-color: #1f2937; padding: 12px; border-radius: 8px;
+    display: flex; justify-content: space-between; font-size: 0.95rem; border: 1px solid #334155;
+}
+.checkbox-card {
+    display: flex; gap: 14px; background-color: #1f2937; padding: 16px;
+    border-radius: 12px; cursor: pointer; text-align: left; align-items: flex-start;
+    border: 1px solid #374151; transition: border 0.2s;
+}
+.checkbox-card input[type="checkbox"] { width: 20px; height: 20px; margin-top: 3px; cursor: pointer; flex-shrink: 0; }
+.checkbox-text h3 { font-size: 1rem; color: #e2e8f0; margin-bottom: 4px; transition: color 0.2s; }
+.checkbox-text p { font-size: 0.85rem; color: #94a3b8; line-height: 1.4; }
+.checkbox-card:has(input:checked) { border-color: #38bdf8; background-color: rgba(56, 189, 248, 0.03); }
+.checkbox-card:has(input:checked) .checkbox-text h3 { color: #38bdf8; }
+
+/* --- FITUR BARU: UI LOGIN MODEM MOCKUP --- */
+.login-mockup { background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.login-form { padding: 30px 20px; text-align: center; }
+.avatar-router { font-size: 2.5rem; margin-bottom: 15px; }
+.login-form input {
+    width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #cbd5e1;
+    border-radius: 6px; font-size: 0.9rem; color: #1f2937; background-color: #f8fafc;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #94a3b8;
-    border-radius: 4px;
-    font-weight: bold;
-    color: #334155;
-    background-color: #ffffff;
-}
+/* --- REPLIKA PANEL SETTING DNS --- */
+.toggle-container { display: flex; gap: 10px; margin: 16px 0; }
+.btn-tab { flex: 1; padding: 10px; border: 1px solid #38bdf8; background: none; color: #38bdf8; font-weight: bold; border-radius: 8px; cursor: pointer; }
+.btn-tab.active { background-color: #38bdf8; color: #111827; }
+.router-mockup { background-color: #ffffff; color: #1e2937; border-radius: 12px; overflow: hidden; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+.browser-bar { background-color: #e5e7eb; padding: 8px 12px; font-family: monospace; font-size: 0.8rem; border-bottom: 1px solid #d1d5db; font-weight: bold; color: #4b5563; }
+.router-body { padding: 16px; }
+.router-header { font-size: 0.9rem; color: #6b7280; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; margin-bottom: 12px; }
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: bold; margin-bottom: 4px; color: #4b5563; }
+.form-group input { width: 100%; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-weight: bold; color: #1f2937; background-color: #f9fafb; }
 
-/* --- ANIMASI PRINSIP SIGNALING (PULSE) --- */
-.highlight-signal {
-    border: 2px dashed #0ea5e9;
-    background-color: rgba(14, 165, 233, 0.08);
-    padding: 8px;
-    border-radius: 6px;
-    animation: pulse 2s infinite;
-}
-
+/* PRINSIP SIGNALING HIGHLIGHT PULSE */
+.highlight-signal { border: 2px dashed #0ea5e9; background-color: rgba(14, 165, 233, 0.04); animation: pulse 2s infinite; }
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.5); }
-    70% { box-shadow: 0 0 0 8px rgba(14, 165, 233, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(14, 165, 233, 0); }
     100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
 }
+.btn-apply { background-color: #2563eb; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; width: 100%; cursor: pointer; }
 
-.btn-apply {
-    background-color: #0ea5e9;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.btn-apply:hover {
-    background-color: #0284c7;
-}
+/* --- UTILS --- */
+.alert-box { background-color: rgba(239, 68, 68, 0.08); border-left: 4px solid #ef4444; padding: 16px; border-radius: 0 12px 12px 0; text-align: left; margin-bottom: 20px; }
+.alert-desc { font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.4; }
+.hidden { display: none !important; }
+.btn-back { background: none; color: #6b7280; border: none; font-size: 0.9rem; font-weight: bold; cursor: pointer; margin-bottom: 16px; display: block; }
+.btn-danger { width: 100%; padding: 16px; background-color: #ef4444; border: none; color: white; font-weight: bold; border-radius: 12px; cursor: pointer; }
+.helper-text { font-size: 0.75rem; color: #6b7280; margin-top: 10px; text-align: center; }
