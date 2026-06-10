@@ -14,11 +14,10 @@ const btnLos = document.getElementById('btn-los');
 const btnHack1 = document.getElementById('btn-hack1');
 const btnHack2 = document.getElementById('btn-hack2');
 
-// FUNCTION TRANSISI HALAMAN MUTASI CLASS
+// FUNCTION TRANSISI HALAMAN YANG BENAR & AMAN
 function changePage(fromPage, toPage) {
     fromPage.classList.add('hidden');
-    toPage.remove('hidden'); // Menghapus class hidden agar tampil
-    toPage.classList.remove('hidden');
+    toPage.classList.remove('hidden'); // Sembunyikan halaman lama, munculkan halaman baru
 }
 
 function resetToDashboard() {
@@ -30,7 +29,7 @@ function resetToDashboard() {
     mainMenu.classList.remove('hidden');
 }
 
-// ROUTING TRIGGER KLIK
+// ROUTING TRIGGER KLIK MENU UTAMA
 btnLemot.addEventListener('click', () => changePage(mainMenu, sectionLemot));
 btnLos.addEventListener('click', () => changePage(mainMenu, sectionLos));
 btnHack1.addEventListener('click', () => changePage(sectionLemot, halamanPosisi));
@@ -71,7 +70,7 @@ btnRunTest.addEventListener('click', () => {
             
             // Mengunci angka simulator lemot (1.0 - 5.0 Mbps) demi keselarasan skenario UCP 2
             const finalSpeed = parseFloat((Math.random() * 4 + 1).toFixed(1));
-            const finalPing = Math.floor(Math.random() * 40 + 60); // Ping tinggi (60-100ms)
+            const finalPing = Math.floor(Math.random() * 40 + 60); 
             const finalJitter = Math.floor(Math.random() * 15 + 10);
             
             pingDisplay.innerText = `Ping: ${finalPing} ms`;
@@ -80,7 +79,6 @@ btnRunTest.addEventListener('click', () => {
             let statusText = "";
             let adviceContent = "";
 
-            // LOGIKA DETEKSI JALUR MASALAH
             if (finalSpeed < 2.0) {
                 statusText = "CRITICAL / LEMOT PARAH 🛑";
                 adviceContent = `❌ <b>Koneksi Drop Maksimal (${finalSpeed} Mbps):</b> Kecepatan internet di bawah standar operasional.<br>👉 Tindakan: Silakan masuk ke opsi <b>Trik 2: Ganti Jalur DNS</b> sistem modem!`;
@@ -89,7 +87,7 @@ btnRunTest.addEventListener('click', () => {
                 adviceContent = `🟡 <b>Koneksi Terhambat (${finalSpeed} Mbps):</b> Sinyal penuh tapi bandwidth bocor.<br>👉 Tindakan: Rekomendasi eksekusi <b>Trik 1: Atur Posisi Router</b> sekarang juga.`;
             } else {
                 statusText = "FAIR / CUKUP OK 🔄";
-                adviceContent = `🟢 <b>Koneksi Menengah (${finalSpeed} Mbps):</b> Speed memadai, namun respon DNS lambat.<br>👉 Tindakan: Sangat disarankan mengoptimalkan server DNS lewat <b>Trik 2</b> agar lancar.`;
+                adviceContent = `🟢 <b>Koneksi Lumayan (${finalSpeed} Mbps):</b> Speed memadai, namun respon DNS lambat.<br>👉 Tindakan: Sangat disarankan mengoptimalkan server DNS lewat <b>Trik 2</b> agar lancar.`;
             }
             
             speedDisplay.innerText = `${finalSpeed} Mbps`;
@@ -120,22 +118,20 @@ checkboxes.forEach(box => {
             if (chk.checked) totalScore += parseInt(chk.value);
         });
         
-        // Atur panjang fill bar secara dinamis
         scoreFill.style.width = totalScore + '%';
         
-        // Logika pengkondisian warna widget skor
         if (totalScore === 0) {
             signalScore.innerText = "POOR / BURUK ❌";
             signalScore.className = "score-bad";
-            scoreFill.style.backgroundColor = "#ef4444"; // Merah
+            scoreFill.style.backgroundColor = "#ef4444"; 
         } else if (totalScore < 100) {
             signalScore.innerText = "MEDIUM / CUKUP ⚠️";
             signalScore.className = "score-medium";
-            scoreFill.style.backgroundColor = "#f59e0b"; // Oranye
+            scoreFill.style.backgroundColor = "#f59e0b"; 
         } else {
             signalScore.innerText = "EXCELLENT / SEMPURNA ✅";
             signalScore.className = "score-good";
-            scoreFill.style.backgroundColor = "#10b981"; // Hijau ijo pro
+            scoreFill.style.backgroundColor = "#10b981"; 
         }
     });
 });
@@ -149,13 +145,11 @@ const passInp = document.getElementById('router-password');
 const btnLoginRouter = document.getElementById('btn-login-router');
 const btnAutofill = document.getElementById('btn-autofill');
 
-// Tombol Intip password pabrik
 btnAutofill.addEventListener('click', () => {
     userInp.value = "admin";
     passInp.value = "admin";
 });
 
-// Verifikasi Gerbang Keamanan Modem
 btnLoginRouter.addEventListener('click', () => {
     if (userInp.value.trim() === "admin" && passInp.value.trim() === "admin") {
         changePage(halamanLoginRouter, halamanDns);
@@ -166,7 +160,6 @@ btnLoginRouter.addEventListener('click', () => {
     }
 });
 
-// LOGIKA LOCK ATURAN GATEWAY IP LAPORAN (ZTE VS HUAWEI)
 const tabHuawei = document.getElementById('tab-huawei');
 const tabZte = document.getElementById('tab-zte');
 const browserBar = document.getElementById('browser-bar');
@@ -175,13 +168,13 @@ const loginBrowserBar = document.getElementById('login-browser-bar');
 tabHuawei.addEventListener('click', () => {
     tabHuawei.classList.add('active');
     tabZte.classList.remove('active');
-    browserBar.innerText = '🌐 URL: 192.168.100.1'; // IP Huawei Standard IndiHome
+    browserBar.innerText = '🌐 URL: 192.168.100.1'; 
     loginBrowserBar.innerText = '🌐 IP Gateway: 192.168.100.1';
 });
 
 tabZte.addEventListener('click', () => {
     tabZte.classList.add('active');
     tabHuawei.classList.remove('active');
-    browserBar.innerText = '🌐 URL: 192.168.1.1'; // IP ZTE Standard IndiHome
+    browserBar.innerText = '🌐 URL: 192.168.1.1'; 
     loginBrowserBar.innerText = '🌐 IP Gateway: 192.168.1.1';
 });
