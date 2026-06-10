@@ -11,28 +11,42 @@
     <div class="app-container">
         <header>
             <h1>📶 SIGNAL</h1>
-            <p>Benerin Wi-Fi Rumah Tanpa Panggil Teknisi</p>
+            <p>Mastering Wi-Fi Router Troubleshooting</p>
         </header>
 
         <main id="main-menu">
-            <div class="speedtest-box">
-                <h3>⚡ Cek Kecepatan Wi-Fi Kamu</h3>
-                <div class="meter-container">
-                    <div id="speed-bar" class="speed-bar"></div>
-                    <span id="speed-result">0 Mbps</span>
+            <div class="premium-widget speedtest-box">
+                <div class="widget-header">
+                    <h3>⚡ Diagnostic Speed Test</h3>
+                    <span class="badge-tech">v1.0-Live</span>
                 </div>
-                <button id="btn-run-test" class="btn-test">Mulai Tes Koneksi</button>
-                <p id="test-recommendation" class="test-rec-text hidden"></p>
+                <p class="widget-desc">Ketuk tombol di bawah untuk mendeteksi kesehatan jaringan Wi-Fi kamu secara otomatis.</p>
+                
+                <div class="meter-wrapper">
+                    <div id="speed-bar" class="speed-progress-bar"></div>
+                    <div class="meter-data">
+                        <span id="speed-display">0.0 Mbps</span>
+                        <div class="mini-metrics">
+                            <span id="ping-display">Ping: -- ms</span>
+                            <span id="jitter-display">Jitter: -- ms</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="btn-run-test" class="btn-widget-action">Mulai Analisis Jaringan</button>
+                <div id="test-recommendation" class="test-rec-box hidden"></div>
             </div>
 
-            <h2 class="section-title" style="margin-top: 25px;">Atau Pilih Kendala Manual:</h2>
+            <h2 class="section-title">Pilih Kendala Secara Manual:</h2>
             <div class="grid-menu">
                 <div id="btn-lemot" class="grid-card card-cyan">
+                    <div class="card-glow"></div>
                     <span class="card-icon">🐌</span>
                     <h3>Wi-Fi Lemot</h3>
                     <p>Sinyal penuh tapi buat browsing putus-putus</p>
                 </div>
                 <div id="btn-los" class="grid-card card-red">
+                    <div class="card-glow"></div>
                     <span class="card-icon">🚨</span>
                     <h3>Mati Total</h3>
                     <p>Lampu modem bermasalah / tidak ada internet</p>
@@ -41,117 +55,111 @@
         </main>
 
         <section id="scenario-lemot" class="hidden">
-            <button id="back-to-menu1" class="btn-back">⬅ Kembali ke Menu</button>
+            <button id="back-to-menu1" class="btn-back">← Kembali ke Dashboard</button>
             <h2 class="section-title">Solusi Wi-Fi Lemot</h2>
             
-            <lottie-player src="assets/wifi-loading.json" background="transparent" speed="1" style="width: 120px; height: 120px; margin: 0 auto;" loop autoplay></lottie-player>
+            <div class="animation-container">
+                <lottie-player src="assets/wifi-loading.json" background="transparent" speed="1" style="width: 130px; height: 130px; margin: 0 auto;" loop autoplay></lottie-player>
+            </div>
             
-            <p class="section-subtitle">Coba dua trik hacker di bawah ini secara berurutan:</p>
-            <button id="btn-hack1" class="btn-action-card">
-                <span>🛠️ Trik 1</span>
-                <b>Atur Ulang Posisi Router (Checklist Sinyal)</b>
+            <p class="section-subtitle">Pilih langkah perbaikan mandiri di bawah ini:</p>
+            
+            <button id="btn-hack1" class="list-action-card">
+                <div class="lac-number">01</div>
+                <div class="lac-text">
+                    <b>Atur Ulang Posisi Router</b>
+                    <p>Optimalkan jangkauan sinyal fisik (Checklist Skor)</p>
+                </div>
             </button>
-            <button id="btn-hack2" class="btn-action-card">
-                <span>⚙️ Trik 2</span>
-                <b>Ganti Jalur Internet (Simulasi DNS)</b>
+            
+            <button id="btn-hack2" class="list-action-card">
+                <div class="lac-number">02</div>
+                <div class="lac-text">
+                    <b>Ubah Jalur Internet (DNS)</b>
+                    <p>Simulasi konfigurasi sistem router ZTE & Huawei</p>
+                </div>
             </button>
         </section>
 
         <section id="scenario-los" class="hidden">
-            <button id="back-to-menu2" class="btn-back">⬅ Kembali ke Menu</button>
-            <h2 class="section-title" style="color: #ef4444;">Peringatan Gawat!</h2>
+            <button id="back-to-menu2" class="btn-back">← Kembali ke Dashboard</button>
+            <h2 class="section-title" style="color: #ef4444;">Peringatan: Putus Total!</h2>
             
-            <lottie-player src="assets/error-animation.json" background="transparent" speed="1" style="width: 120px; height: 120px; margin: 0 auto;" loop autoplay></lottie-player>
-            
-            <div class="alert-box">
-                <p>⚠️ <b>Cek Lampu Tulisan "LOS" di Modem:</b></p>
-                <p class="alert-desc">Kalau lampu tulisan <b>LOS berkedip MERAH</b>, itu tandanya kabel optik di luar rumah putus/terserempet pohon. Masalah fisik ini TIDAK BISA dibenerin lewat HP.</p>
+            <div class="animation-container">
+                <lottie-player src="assets/error-animation.json" background="transparent" speed="1" style="width: 130px; height: 130px; margin: 0 auto;" loop autoplay></lottie-player>
             </div>
-            <button class="btn-danger" onclick="window.open('tel:188')">📞 Telepon Teknisi IndiHome (188)</button>
+            
+            <div class="custom-alert-box">
+                <h4>🛑 Aturan Garis Merah (Red Line)</h4>
+                <p>Periksa lampu indikator bertuliskan <b>"LOS"</b> di modem IndiHome fisik kamu. Jika lampu tersebut <b>berkedip MERAH</b>, artinya kabel fiber optik di luar rumah putus atau tertekuk.</p>
+                <p style="margin-top: 8px; font-weight: bold; color: #f8fafc;">Masalah fisik ini tidak bisa diperbaiki lewat codingan atau HP!</p>
+            </div>
+            
+            <button class="btn-call-center" onclick="window.open('tel:188')">📞 Hubungi Call Center IndiHome (188)</button>
         </section>
 
         <section id="halaman-posisi" class="hidden">
-            <button id="back-to-lemot1" class="btn-back">⬅ Kembali</button>
-            <h2 class="section-title">Trik 1: Posisi Router</h2>
-            <p class="section-subtitle">Makin banyak yang dicentang, makin kuat sinyalmu!</p>
+            <button id="back-to-lemot1" class="btn-back">← Kembali ke Opsi</button>
+            <h2 class="section-title">Trik 1: Posisi Fisik Router</h2>
+            <p class="section-subtitle">Centang kondisi di bawah ini untuk melihat skor kelayakan sinyal kamu:</p>
             
-            <div class="score-box">
-                <span>Skor Kelayakan Posisi:</span>
-                <b id="signal-score" style="color: #ef4444;">BURUK ❌</b>
+            <div class="live-score-widget">
+                <span>Kekuatan Pancaran Sinyal:</span>
+                <b id="signal-score" class="score-bad">POOR / BURUK ❌</b>
+                <div class="score-track"><div id="score-fill" class="score-fill-bar"></div></div>
             </div>
 
-            <div class="step-container" style="margin-top: 15px;">
-                <label class="checkbox-card">
-                    <input type="checkbox" class="signal-check" value="35">
-                    <div class="checkbox-text">
-                        <h3>Jauhkan dari Tembok Beton</h3>
-                        <p>Modem sudah tidak tersembunyi di balik tembok semen tebal atau di dalam lemari kayu.</p>
+            <div class="checklist-group">
+                <label class="interactive-check-card">
+                    <input type="checkbox" class="signal-check-input" value="35">
+                    <div class="check-custom-box"></div>
+                    <div class="check-card-content">
+                        <h4>Bebas dari Penghalang Tembok</h4>
+                        <p>Modem ditaruh di ruang terbuka, tidak terkurung di dalam lemari atau di balik sekat semen tebal.</p>
                     </div>
                 </label>
-                <label class="checkbox-card">
-                    <input type="checkbox" class="signal-check" value="35">
-                    <div class="checkbox-text">
-                        <h3>Posisikan di Tempat Tinggi</h3>
-                        <p>Modem sudah ditaruh di atas meja atau lemari pajangan (minimal sejajar dada manusia).</p>
+                
+                <label class="interactive-check-card">
+                    <input type="checkbox" class="signal-check-input" value="35">
+                    <div class="check-custom-box"></div>
+                    <div class="check-card-content">
+                        <h4>Posisi Perangkat Minimal Setinggi Dada</h4>
+                        <p>Modem ditaruh di atas meja atau dipasang di dinding. Sinyal memancar ke bawah, jangan ditaruh di lantai.</p>
                     </div>
                 </label>
-                <label class="checkbox-card">
-                    <input type="checkbox" class="signal-check" value="30">
-                    <div class="checkbox-text">
-                        <h3>Hindari Perangkat Elektronik</h3>
-                        <p>Modem sudah dijauhkan dari microwave, kulkas, atau TV yang bisa mengacaukan gelombang Wi-Fi.</p>
+                
+                <label class="interactive-check-card">
+                    <input type="checkbox" class="signal-check-input" value="30">
+                    <div class="check-custom-box"></div>
+                    <div class="check-card-content">
+                        <h4>Jauh dari Interferensi Elektronik</h4>
+                        <p>Modem aman dari perangkat gelombang mikro seperti microwave, kulkas, atau TV tabung.</p>
                     </div>
                 </label>
             </div>
         </section>
 
         <section id="halaman-login-router" class="hidden">
-            <button id="back-to-lemot3" class="btn-back">⬅ Kembali</button>
-            <h2 class="section-title">Masuk ke Sistem Modem</h2>
-            <p class="section-subtitle">Sambungkan HP ke Wi-Fi rumah, lalu lewati gerbang login ini:</p>
+            <button id="back-to-lemot3" class="btn-back">← Kembali ke Opsi</button>
+            <h2 class="section-title">Gerbang Masuk Modem</h2>
+            <p class="section-subtitle">Simulasi masuk ke gerbang sistem admin IP Localhost bawaan provider.</p>
 
-            <div class="login-mockup">
-                <div id="login-browser-bar" class="browser-bar">🌐 192.168.100.1</div>
-                <div class="login-form">
-                    <div class="avatar-router">🔒</div>
-                    <input type="text" id="router-username" placeholder="Username (Contoh: admin)">
-                    <input type="password" id="router-password" placeholder="Password (Contoh: admin)">
-                    <button id="btn-login-router" class="btn-apply" style="background-color: #10b981;">Masuk (Login)</button>
-                    <button id="btn-autofill" class="btn-back" style="margin: 10px auto 0 auto; text-align: center;">💡 Intip & Isi Otomatis</button>
+            <div class="device-login-box">
+                <div id="login-browser-bar" class="mock-browser-header">🌐 IP Gateway: 192.168.100.1</div>
+                <div class="mock-login-body">
+                    <div class="lock-avatar">🔐</div>
+                    <div class="mock-input-field">
+                        <label>Username Admin</label>
+                        <input type="text" id="router-username" placeholder="Masukkan username admin...">
+                    </div>
+                    <div class="mock-input-field">
+                        <label>Password Admin</label>
+                        <input type="password" id="router-password" placeholder="Masukkan password admin...">
+                    </div>
+                    <button id="btn-login-router" class="btn-submit-login">Sign In / Masuk</button>
+                    <button id="btn-autofill" class="btn-helper-autofill">💡 Intip & Isi Otomatis Kunci Pabrik</button>
                 </div>
             </div>
         </section>
 
-        <section id="halaman-dns" class="hidden">
-            <button id="back-to-login" class="btn-back">⬅ Keluar dari Modem</button>
-            <h2 class="section-title">Trik 2: Ganti Jalur DNS</h2>
-            
-            <div class="toggle-container">
-                <button id="tab-huawei" class="btn-tab active">Modem Huawei</button>
-                <button id="tab-zte" class="btn-tab">Modem ZTE</button>
-            </div>
-
-            <div class="router-mockup">
-                <div id="browser-bar" class="browser-bar">🌐 192.168.100.1</div>
-                <div class="router-body">
-                    <h4 class="router-header">Menu: Pengaturan Internet (WAN)</h4>
-                    
-                    <div class="form-group highlight-signal">
-                        <label>Isi Jalur Utama (Primary DNS):</label>
-                        <input type="text" value="8.8.8.8" readonly>
-                    </div>
-                    <div class="form-group highlight-signal">
-                        <label>Isi Jalur Cadangan (Secondary DNS):</label>
-                        <input type="text" value="1.1.1.1" readonly>
-                    </div>
-
-                    <button class="btn-apply" onclick="alert('Mantap! Jalur Wi-Fi kamu berhasil dialihkan ke server Google & Cloudflare yang lebih cepat!')">Simpan Pengaturan</button>
-                </div>
-            </div>
-            <p class="helper-text">*Kotak yang berkedip biru adalah bagian yang wajib kamu isi di modem asli.</p>
-        </section>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+        <section id="halaman-dns"

@@ -1,4 +1,6 @@
-// --- ELEMEN HALAMAN ---
+// ==========================================
+// 1. SELECTOR STATE HALAMAN (SPA MANAGEMENT)
+// ==========================================
 const mainMenu = document.getElementById('main-menu');
 const sectionLemot = document.getElementById('scenario-lemot');
 const sectionLos = document.getElementById('scenario-los');
@@ -6,27 +8,20 @@ const halamanPosisi = document.getElementById('halaman-posisi');
 const halamanLoginRouter = document.getElementById('halaman-login-router');
 const halamanDns = document.getElementById('halaman-dns');
 
-// --- TOMBOL NAVIGASI UTAMA ---
+// SELECTOR TRIGGER KENDALA
 const btnLemot = document.getElementById('btn-lemot');
 const btnLos = document.getElementById('btn-los');
 const btnHack1 = document.getElementById('btn-hack1');
 const btnHack2 = document.getElementById('btn-hack2');
 
-// --- TOMBOL BACK (KEMBALI) ---
-document.getElementById('back-to-menu1').addEventListener('click', () => resetToHome());
-document.getElementById('back-to-menu2').addEventListener('click', () => resetToHome());
-document.getElementById('back-to-lemot1').addEventListener('click', () => changePage(halamanPosisi, sectionLemot));
-document.getElementById('back-to-lemot3').addEventListener('click', () => changePage(halamanLoginRouter, sectionLemot));
-document.getElementById('back-to-login').addEventListener('click', () => changePage(halamanDns, halamanLoginRouter));
-
-// Fungsi Transisi Halaman
-function changePage(from, to) {
-    from.classList.add('hidden');
-    to.classList.remove('hidden');
+// FUNCTION TRANSISI HALAMAN MUTASI CLASS
+function changePage(fromPage, toPage) {
+    fromPage.classList.add('hidden');
+    toPage.remove('hidden'); // Menghapus class hidden agar tampil
+    toPage.classList.remove('hidden');
 }
 
-// Fungsi Reset Semua ke Menu Utama
-function resetToHome() {
+function resetToDashboard() {
     sectionLemot.classList.add('hidden');
     sectionLos.classList.add('hidden');
     halamanPosisi.classList.add('hidden');
@@ -35,117 +30,143 @@ function resetToHome() {
     mainMenu.classList.remove('hidden');
 }
 
-// Alur Klik Menu Utama & Trik
+// ROUTING TRIGGER KLIK
 btnLemot.addEventListener('click', () => changePage(mainMenu, sectionLemot));
 btnLos.addEventListener('click', () => changePage(mainMenu, sectionLos));
 btnHack1.addEventListener('click', () => changePage(sectionLemot, halamanPosisi));
 btnHack2.addEventListener('click', () => changePage(sectionLemot, halamanLoginRouter));
 
+// ATURAN TOMBOL KEMBALI (BACK MANAGEMENT)
+document.getElementById('back-to-menu1').addEventListener('click', () => resetToDashboard());
+document.getElementById('back-to-menu2').addEventListener('click', () => resetToDashboard());
+document.getElementById('back-to-lemot1').addEventListener('click', () => changePage(halamanPosisi, sectionLemot));
+document.getElementById('back-to-lemot3').addEventListener('click', () => changePage(halamanLoginRouter, sectionLemot));
+document.getElementById('back-to-login').addEventListener('click', () => changePage(halamanDns, halamanLoginRouter));
+
 
 // ==========================================
-// FITUR 1: SIMULATOR SPEEDTEST (SUDAH DINAMIS & BERTINGKAT)
+// FITUR 1: SIMULATOR DYNAMIC SPEEDTEST (BERTINGKAT)
 // ==========================================
 const btnRunTest = document.getElementById('btn-run-test');
 const speedBar = document.getElementById('speed-bar');
-const speedResult = document.getElementById('speed-result');
-const testRec = document.getElementById('test-recommendation');
+const speedDisplay = document.getElementById('speed-display');
+const pingDisplay = document.getElementById('ping-display');
+const jitterDisplay = document.getElementById('jitter-display');
+const testRecBox = document.getElementById('test-recommendation');
 
 btnRunTest.addEventListener('click', () => {
     btnRunTest.disabled = true;
-    btnRunTest.innerText = "Mengecek Sinyal...";
-    testRec.classList.add('hidden');
+    btnRunTest.innerText = "Analyzing Packet...";
+    testRecBox.classList.add('hidden');
     speedBar.style.width = '0%';
     
-    let width = 0;
-    speedResult.innerText = "Connecting...";
+    let progress = 0;
+    speedDisplay.innerText = "Connecting...";
+    pingDisplay.innerText = "Ping: Fetching...";
+    jitterDisplay.innerText = "Jitter: Fetching...";
     
     const interval = setInterval(() => {
-        if (width >= 100) {
+        if (progress >= 100) {
             clearInterval(interval);
             
-            // Generate angka acak desimal dari 1.0 sampai 5.0
-            const fakeSpeed = parseFloat((Math.random() * 4 + 1).toFixed(1)); 
+            // Mengunci angka simulator lemot (1.0 - 5.0 Mbps) demi keselarasan skenario UCP 2
+            const finalSpeed = parseFloat((Math.random() * 4 + 1).toFixed(1));
+            const finalPing = Math.floor(Math.random() * 40 + 60); // Ping tinggi (60-100ms)
+            const finalJitter = Math.floor(Math.random() * 15 + 10);
             
-            let status = "";
-            let recommendation = "";
+            pingDisplay.innerText = `Ping: ${finalPing} ms`;
+            jitterDisplay.innerText = `Jitter: ${finalJitter} ms`;
+            
+            let statusText = "";
+            let adviceContent = "";
 
-            // LOGIKA BERTINGKAT SESUAI HASIL ANGKA
-            if (fakeSpeed < 2.0) {
-                status = "Sangat Lambat 🛑";
-                recommendation = `🔴 <b>Koneksi Kritis (${fakeSpeed} Mbps):</b> Kecepatan drop parah di bawah batas wajar.<br>👉 Langsung eksekusi <b>Trik 2: Ganti Jalur DNS</b> modem kamu!`;
-            } else if (fakeSpeed < 4.0) {
-                status = "Lambat ⚠️";
-                recommendation = `🟡 <b>Koneksi Pas-pasan (${fakeSpeed} Mbps):</b> Sinyal kurang stabil terhalang sesuatu.<br>👉 Coba lakukan <b>Trik 1: Atur Posisi Router</b> untuk hilangkan hambatan fisik.`;
+            // LOGIKA DETEKSI JALUR MASALAH
+            if (finalSpeed < 2.0) {
+                statusText = "CRITICAL / LEMOT PARAH 🛑";
+                adviceContent = `❌ <b>Koneksi Drop Maksimal (${finalSpeed} Mbps):</b> Kecepatan internet di bawah standar operasional.<br>👉 Tindakan: Silakan masuk ke opsi <b>Trik 2: Ganti Jalur DNS</b> sistem modem!`;
+            } else if (finalSpeed < 4.0) {
+                statusText = "SLOW / LAMBAT ⚠️";
+                adviceContent = `🟡 <b>Koneksi Terhambat (${finalSpeed} Mbps):</b> Sinyal penuh tapi bandwidth bocor.<br>👉 Tindakan: Rekomendasi eksekusi <b>Trik 1: Atur Posisi Router</b> sekarang juga.`;
             } else {
-                status = "Cukup Oke 🔄";
-                recommendation = `🟢 <b>Koneksi Lumayan (${fakeSpeed} Mbps):</b> Speed dapet, tapi respon server agak delay.<br>👉 Disarankan cek <b>Trik 1 & Trik 2</b> biar Wi-Fi kamu makin ngebut maksimal.`;
+                statusText = "FAIR / CUKUP OK 🔄";
+                adviceContent = `🟢 <b>Koneksi Menengah (${finalSpeed} Mbps):</b> Speed memadai, namun respon DNS lambat.<br>👉 Tindakan: Sangat disarankan mengoptimalkan server DNS lewat <b>Trik 2</b> agar lancar.`;
             }
             
-            // Cetak hasil ke layar UI
-            speedResult.innerText = `${fakeSpeed} Mbps (${status})`;
-            testRec.innerHTML = recommendation;
-            testRec.classList.remove('hidden');
+            speedDisplay.innerText = `${finalSpeed} Mbps`;
+            testRecBox.innerHTML = `<b>Status:</b> ${statusText}<br>${adviceContent}`;
+            testRecBox.classList.remove('hidden');
             
             btnRunTest.disabled = false;
-            btnRunTest.innerText = "Tes Ulang Sinyal";
+            btnRunTest.innerText = "Uji Ulang Jaringan";
         } else {
-            width += 4;
-            speedBar.style.width = width + '%';
+            progress += 5;
+            speedBar.style.width = progress + '%';
         }
-    }, 50);
+    }, 60);
 });
 
 
 // ==========================================
-// FITUR 2: INTERACTIVE CHECKLIST SCORE (HACK 1)
+// FITUR 2: INTERACTIVE LIVE RADAR SCORE BAR (HACK 1)
 // ==========================================
-const checkboxes = document.querySelectorAll('.signal-check');
+const checkboxes = document.querySelectorAll('.signal-check-input');
 const signalScore = document.getElementById('signal-score');
+const scoreFill = document.getElementById('score-fill');
 
 checkboxes.forEach(box => {
     box.addEventListener('change', () => {
-        let currentScore = 0;
-        checkboxes.forEach(c => {
-            if (c.checked) currentScore += parseInt(c.value);
+        let totalScore = 0;
+        checkboxes.forEach(chk => {
+            if (chk.checked) totalScore += parseInt(chk.value);
         });
         
-        if (currentScore === 0) {
-            signalScore.innerText = "BURUK ❌";
-            signalScore.style.color = "#ef4444";
-        } else if (currentScore < 100) {
-            signalScore.innerText = "CUKUP BAGUS ⚠️";
-            signalScore.style.color = "#f59e0b";
+        // Atur panjang fill bar secara dinamis
+        scoreFill.style.width = totalScore + '%';
+        
+        // Logika pengkondisian warna widget skor
+        if (totalScore === 0) {
+            signalScore.innerText = "POOR / BURUK ❌";
+            signalScore.className = "score-bad";
+            scoreFill.style.backgroundColor = "#ef4444"; // Merah
+        } else if (totalScore < 100) {
+            signalScore.innerText = "MEDIUM / CUKUP ⚠️";
+            signalScore.className = "score-medium";
+            scoreFill.style.backgroundColor = "#f59e0b"; // Oranye
         } else {
-            signalScore.innerText = "SANGAT SEMPURNA ✅";
-            signalScore.style.color = "#10b981";
+            signalScore.innerText = "EXCELLENT / SEMPURNA ✅";
+            signalScore.className = "score-good";
+            scoreFill.style.backgroundColor = "#10b981"; // Hijau ijo pro
         }
     });
 });
 
 
 // ==========================================
-// FITUR 3: MOCKUP ROUTER LOGIN & TOGGLE GATEWAY (HACK 2)
+// FITUR 3 & 4: ROUTER INTERFACES, AUTOMATION FILL, & TOGGLE IP
 // ==========================================
 const userInp = document.getElementById('router-username');
 const passInp = document.getElementById('router-password');
 const btnLoginRouter = document.getElementById('btn-login-router');
 const btnAutofill = document.getElementById('btn-autofill');
 
+// Tombol Intip password pabrik
 btnAutofill.addEventListener('click', () => {
     userInp.value = "admin";
     passInp.value = "admin";
 });
 
+// Verifikasi Gerbang Keamanan Modem
 btnLoginRouter.addEventListener('click', () => {
     if (userInp.value.trim() === "admin" && passInp.value.trim() === "admin") {
         changePage(halamanLoginRouter, halamanDns);
         userInp.value = "";
         passInp.value = "";
     } else {
-        alert("❌ Salah! Masukan 'admin' untuk username dan password bawaan pabrik.");
+        alert("❌ Otoritas Gagal! Gunakan kata sandi default pabrik 'admin' dan 'admin'.");
     }
 });
 
+// LOGIKA LOCK ATURAN GATEWAY IP LAPORAN (ZTE VS HUAWEI)
 const tabHuawei = document.getElementById('tab-huawei');
 const tabZte = document.getElementById('tab-zte');
 const browserBar = document.getElementById('browser-bar');
@@ -154,13 +175,13 @@ const loginBrowserBar = document.getElementById('login-browser-bar');
 tabHuawei.addEventListener('click', () => {
     tabHuawei.classList.add('active');
     tabZte.classList.remove('active');
-    browserBar.innerText = '🌐 Ketik di browser HP: 192.168.100.1';
-    loginBrowserBar.innerText = '🌐 192.168.100.1';
+    browserBar.innerText = '🌐 URL: 192.168.100.1'; // IP Huawei Standard IndiHome
+    loginBrowserBar.innerText = '🌐 IP Gateway: 192.168.100.1';
 });
 
 tabZte.addEventListener('click', () => {
     tabZte.classList.add('active');
     tabHuawei.classList.remove('active');
-    browserBar.innerText = '🌐 Ketik di browser HP: 192.168.1.1';
-    loginBrowserBar.innerText = '🌐 192.168.1.1';
+    browserBar.innerText = '🌐 URL: 192.168.1.1'; // IP ZTE Standard IndiHome
+    loginBrowserBar.innerText = '🌐 IP Gateway: 192.168.1.1';
 });
