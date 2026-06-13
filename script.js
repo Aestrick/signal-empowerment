@@ -170,7 +170,7 @@ const modalRouterImg = document.getElementById('modal-router-img');
 btnOpenTutorial.addEventListener('click', () => {
     if (tabHuawei.classList.contains('active')) {
         modalRouterTitle.innerText = "Tampilan Asli Router Huawei";
-        modalRouterImg.src = "assets/huawei-real.png";
+        modalRouterImg.src = "assets/huawei-real.PNG";
     } else {
         modalRouterTitle.innerText = "Tampilan Asli Router ZTE";
         modalRouterImg.src = "assets/zte-real.jpg";    
