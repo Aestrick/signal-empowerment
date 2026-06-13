@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGNAL: EMPOWERMENT</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Script Lottie Player Engine -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <div class="app-container">
+        <!-- HEADER UTAMA -->
         <header>
             <h1>📶 SIGNAL</h1>
             <p>Mastering Wi-Fi Router Troubleshooting</p>
         </header>
 
+        <!-- DASHBOARD UTAMA (MENU AWAL) -->
         <main id="main-menu">
+            <!-- FITUR PREMIUM: LIVE SPEEDTEST SIMULATOR -->
             <div class="premium-widget speedtest-box">
                 <div class="widget-header">
                     <h3>⚡ Diagnostic Speed Test</h3>
@@ -37,16 +41,15 @@
                 <div id="test-recommendation" class="test-rec-box hidden"></div>
             </div>
 
+            <!-- MANUAL CATEGORY SELECTOR -->
             <h2 class="section-title" style="margin-top: 25px;">Pilih Kendala Secara Manual:</h2>
             <div class="grid-menu">
                 <div id="btn-lemot" class="grid-card card-cyan">
-                    <div class="card-glow"></div>
                     <span class="card-icon">🐌</span>
                     <h3>Wi-Fi Lemot</h3>
                     <p>Sinyal penuh tapi buat browsing putus-putus</p>
                 </div>
                 <div id="btn-los" class="grid-card card-red">
-                    <div class="card-glow"></div>
                     <span class="card-icon">🚨</span>
                     <h3>Mati Total</h3>
                     <p>Lampu modem bermasalah / tidak ada internet</p>
@@ -54,6 +57,7 @@
             </div>
         </main>
 
+        <!-- SKENARIO 1: WI-FI LEMOT -->
         <section id="scenario-lemot" class="hidden">
             <button id="back-to-menu1" class="btn-back">← Kembali ke Dashboard</button>
             <h2 class="section-title">Solusi Wi-Fi Lemot</h2>
@@ -81,6 +85,7 @@
             </button>
         </section>
 
+        <!-- SKENARIO 2: MATI TOTAL -->
         <section id="scenario-los" class="hidden">
             <button id="back-to-menu2" class="btn-back">← Kembali ke Dashboard</button>
             <h2 class="section-title" style="color: #ef4444;">Peringatan: Putus Total!</h2>
@@ -98,6 +103,7 @@
             <button class="btn-call-center" onclick="window.open('tel:188')">📞 Hubungi Call Center IndiHome (188)</button>
         </section>
 
+        <!-- HALAMAN TRiK 1: CHECKLIST -->
         <section id="halaman-posisi" class="hidden">
             <button id="back-to-lemot1" class="btn-back">← Kembali ke Opsi</button>
             <h2 class="section-title">Trik 1: Posisi Fisik Router</h2>
@@ -139,6 +145,7 @@
             </div>
         </section>
 
+        <!-- HALAMAN TRIK 2 - STAGE 1: LOGIN MOCKUP -->
         <section id="halaman-login-router" class="hidden">
             <button id="back-to-lemot3" class="btn-back">← Kembali ke Opsi</button>
             <h2 class="section-title">Gerbang Masuk Modem</h2>
@@ -162,6 +169,7 @@
             </div>
         </section>
 
+        <!-- HALAMAN TRIK 2 - STAGE 2: DNS CONFIGURATION -->
         <section id="halaman-dns" class="hidden">
             <button id="back-to-login" class="btn-back">← Log Out / Keluar Sistem</button>
             <h2 class="section-title">Pengaturan Jalur DNS</h2>
@@ -189,13 +197,30 @@
                         </div>
                     </div>
 
-                    <button class="btn-apply" onclick="alert('Sukses! Konfigurasi DNS dialihkan ke Google Jauh lebih cepat & stabil!')">Apply & Save Changes</button>
+                    <button class="btn-save-config" onclick="alert('Sukses! Konfigurasi DNS dialihkan ke Google Jauh lebih cepat & stabil!')">Apply & Save Changes</button>
+                    
+                    <!-- TOMBOL BARU UTK MODAL TUTORIAL REALISTIS -->
+                    <button id="btn-open-tutorial" class="btn-tutorial-trigger">📸 Intip Tampilan Asli Router</button>
                 </div>
             </div>
             <p class="bottom-helper-info">*Kotak biru berkedip memvisualisasikan Prinsip Signaling untuk mengarahkan mata pengguna awam ke kolom krusial.</p>
         </section>
+
+        <!-- LAYER POPUP MODAL (AWALNYA SEMBUNYI) -->
+        <div id="tutorial-modal" class="modal-overlay hidden">
+            <div class="modal-content-box">
+                <h3 id="modal-router-title">Tampilan Asli Huawei HG8245H</h3>
+                <p class="section-subtitle" style="margin-bottom: 0;">Gunakan gambar riil di bawah ini sebagai komparasi saat mengonfigurasi modem asli kamu:</p>
+                <div class="modal-image-wrapper">
+                    <!-- Placeholder Gambar Lokal Riil -->
+                    <img id="modal-router-img" src="assets/huawei-real.png" alt="Panduan Nyata Router">
+                </div>
+                <button id="btn-close-tutorial" class="btn-close-modal">Selesai Membaca</button>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js?v=1.2"></script>
+    <!-- UPDATE CACHE BUSTING VERSION BUSTING -->
+    <script src="script.js?v=1.5"></script>
 </body>
 </html>

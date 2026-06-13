@@ -178,3 +178,30 @@ tabZte.addEventListener('click', () => {
     browserBar.innerText = '🌐 URL: 192.168.1.1'; 
     loginBrowserBar.innerText = '🌐 IP Gateway: 192.168.1.1';
 });
+
+// ==========================================
+// FITUR 4: POPUP MODAL TUTORIAL ASLI COMPARISON
+// ==========================================
+const tutorialModal = document.getElementById('tutorial-modal');
+const btnOpenTutorial = document.getElementById('btn-open-tutorial');
+const btnCloseTutorial = document.getElementById('btn-close-tutorial');
+const modalRouterTitle = document.getElementById('modal-router-title');
+const modalRouterImg = document.getElementById('modal-router-img');
+
+// Fungsi Membuka Jendela Panduan Realistis
+btnOpenTutorial.addEventListener('click', () => {
+    // Cek merek mana yang lagi aktif dipilih user (Huawei atau ZTE)
+    if (tabHuawei.classList.contains('active')) {
+        modalRouterTitle.innerText = "Tampilan Asli Router Huawei";
+        modalRouterImg.src = "assets/huawei-real.png"; // Arahkan ke file screenshot riil kamu
+    } else {
+        modalRouterTitle.innerText = "Tampilan Asli Router ZTE";
+        modalRouterImg.src = "assets/zte-real.png";    // Arahkan ke file screenshot riil kamu
+    }
+    tutorialModal.classList.remove('hidden');
+});
+
+// Fungsi Menutup Jendela Panduan
+btnCloseTutorial.addEventListener('click', () => {
+    tutorialModal.classList.add('hidden');
+});
