@@ -1,6 +1,3 @@
-// ==========================================
-// 1. SELECTOR STATE HALAMAN (SPA MANAGEMENT)
-// ==========================================
 const mainMenu = document.getElementById('main-menu');
 const sectionLemot = document.getElementById('scenario-lemot');
 const sectionLos = document.getElementById('scenario-los');
@@ -8,16 +5,14 @@ const halamanPosisi = document.getElementById('halaman-posisi');
 const halamanLoginRouter = document.getElementById('halaman-login-router');
 const halamanDns = document.getElementById('halaman-dns');
 
-// SELECTOR TRIGGER KENDALA
 const btnLemot = document.getElementById('btn-lemot');
 const btnLos = document.getElementById('btn-los');
 const btnHack1 = document.getElementById('btn-hack1');
 const btnHack2 = document.getElementById('btn-hack2');
 
-// FUNCTION TRANSISI HALAMAN YANG BENAR & AMAN
 function changePage(fromPage, toPage) {
     fromPage.classList.add('hidden');
-    toPage.classList.remove('hidden'); // Sembunyikan halaman lama, munculkan halaman baru
+    toPage.classList.remove('hidden'); 
 }
 
 function resetToDashboard() {
@@ -29,23 +24,17 @@ function resetToDashboard() {
     mainMenu.classList.remove('hidden');
 }
 
-// ROUTING TRIGGER KLIK MENU UTAMA
 btnLemot.addEventListener('click', () => changePage(mainMenu, sectionLemot));
 btnLos.addEventListener('click', () => changePage(mainMenu, sectionLos));
 btnHack1.addEventListener('click', () => changePage(sectionLemot, halamanPosisi));
 btnHack2.addEventListener('click', () => changePage(sectionLemot, halamanLoginRouter));
 
-// ATURAN TOMBOL KEMBALI (BACK MANAGEMENT)
 document.getElementById('back-to-menu1').addEventListener('click', () => resetToDashboard());
 document.getElementById('back-to-menu2').addEventListener('click', () => resetToDashboard());
 document.getElementById('back-to-lemot1').addEventListener('click', () => changePage(halamanPosisi, sectionLemot));
 document.getElementById('back-to-lemot3').addEventListener('click', () => changePage(halamanLoginRouter, sectionLemot));
 document.getElementById('back-to-login').addEventListener('click', () => changePage(halamanDns, halamanLoginRouter));
 
-
-// ==========================================
-// FITUR 1: SIMULATOR DYNAMIC SPEEDTEST (BERTINGKAT)
-// ==========================================
 const btnRunTest = document.getElementById('btn-run-test');
 const speedBar = document.getElementById('speed-bar');
 const speedDisplay = document.getElementById('speed-display');
@@ -68,7 +57,6 @@ btnRunTest.addEventListener('click', () => {
         if (progress >= 100) {
             clearInterval(interval);
             
-            // Mengunci angka simulator lemot (1.0 - 5.0 Mbps) demi keselarasan skenario UCP 2
             const finalSpeed = parseFloat((Math.random() * 4 + 1).toFixed(1));
             const finalPing = Math.floor(Math.random() * 40 + 60); 
             const finalJitter = Math.floor(Math.random() * 15 + 10);
@@ -104,9 +92,6 @@ btnRunTest.addEventListener('click', () => {
 });
 
 
-// ==========================================
-// FITUR 2: INTERACTIVE LIVE RADAR SCORE BAR (HACK 1)
-// ==========================================
 const checkboxes = document.querySelectorAll('.signal-check-input');
 const signalScore = document.getElementById('signal-score');
 const scoreFill = document.getElementById('score-fill');
@@ -137,9 +122,6 @@ checkboxes.forEach(box => {
 });
 
 
-// ==========================================
-// FITUR 3 & 4: ROUTER INTERFACES, AUTOMATION FILL, & TOGGLE IP
-// ==========================================
 const userInp = document.getElementById('router-username');
 const passInp = document.getElementById('router-password');
 const btnLoginRouter = document.getElementById('btn-login-router');
@@ -179,29 +161,23 @@ tabZte.addEventListener('click', () => {
     loginBrowserBar.innerText = '🌐 IP Gateway: 192.168.1.1';
 });
 
-// ==========================================
-// FITUR 4: POPUP MODAL TUTORIAL ASLI COMPARISON
-// ==========================================
 const tutorialModal = document.getElementById('tutorial-modal');
 const btnOpenTutorial = document.getElementById('btn-open-tutorial');
 const btnCloseTutorial = document.getElementById('btn-close-tutorial');
 const modalRouterTitle = document.getElementById('modal-router-title');
 const modalRouterImg = document.getElementById('modal-router-img');
 
-// Fungsi Membuka Jendela Panduan Realistis
 btnOpenTutorial.addEventListener('click', () => {
-    // Cek merek mana yang lagi aktif dipilih user (Huawei atau ZTE)
     if (tabHuawei.classList.contains('active')) {
         modalRouterTitle.innerText = "Tampilan Asli Router Huawei";
-        modalRouterImg.src = "assets/huawei-real.png"; // Arahkan ke file screenshot riil kamu
+        modalRouterImg.src = "assets/huawei-real.png";
     } else {
         modalRouterTitle.innerText = "Tampilan Asli Router ZTE";
-        modalRouterImg.src = "assets/zte-real.png";    // Arahkan ke file screenshot riil kamu
+        modalRouterImg.src = "assets/zte-real.jpg";    
     }
     tutorialModal.classList.remove('hidden');
 });
 
-// Fungsi Menutup Jendela Panduan
 btnCloseTutorial.addEventListener('click', () => {
     tutorialModal.classList.add('hidden');
 });
